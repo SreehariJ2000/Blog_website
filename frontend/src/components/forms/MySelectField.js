@@ -9,7 +9,7 @@ import FormHelperText from '@mui/material/FormHelperText';
 export default function MySelectField(props) {
   
   const [age, setAge] = React.useState('');
-  const {label, name, control, width, options} = props
+  const {label, name, control, width} = props
   const handleChange = (event) => {
     setAge(event.target.value);
   };

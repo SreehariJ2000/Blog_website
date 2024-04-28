@@ -61,6 +61,15 @@ export default function Navbar(props) {
                 </ListItemButton>
             </ListItem>
 
+            <ListItem disablePadding>
+                <ListItemButton component={Link} to="/newreg" selected={"/newreg" === path}>
+                <ListItemIcon>
+                        <InfoIcon/>
+                </ListItemIcon>
+                <ListItemText primary={"Newregistration"} />
+                </ListItemButton>
+            </ListItem>
+
         </List>
         
         </Box>

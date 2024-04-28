@@ -4,6 +4,7 @@ from rest_framework import viewsets,permissions
 from .models import *
 from .serializers import *
 from rest_framework.response import Response
+from rest_framework import status
 
 
 # Create your views here.
@@ -51,10 +52,22 @@ class  ProjectViewSet(viewsets.ModelViewSet):
         else:
             return Response(serilizer.errors,status=404)
 
-        
-
 
     def destroy(self, request, pk=None):
         queryset=self.queryset.get(pk=pk)
         queryset.delete()
         return Response(status=204)  #HttpResponse
+
+
+
+class YourModelViewSet(viewsets.ModelViewSet):
+    queryset= YourModel.objects.all()
+    serializer_class= YourModelSerilizer
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -29,6 +29,11 @@ export default function  MyMultiLineField(props) {
           onChange={onChange}
           value={value}
           placeholder={placeholder}
+          error={!!error} // Set error prop to true if error exists
+            helperText={error ? error.message : ''}
+            FormHelperTextProps={{
+              sx: { color: 'green' } // Customize error message color
+            }}
         />
 
         

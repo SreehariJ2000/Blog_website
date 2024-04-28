@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import Create from './components/Create';
 import Edit from './components/Edit';
 import Delete from './components/Delete';
+import NewReg from './components/NewReg';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
            <Route path="/create" element={<Create/>}/>
            <Route path="/edit/:id" element={<Edit/>}/>
            <Route path="/delete/:id" element={<Delete/>}/>
+           <Route path="/newreg" element={<NewReg/>}/>
            
          
          </Routes>
