@@ -7,8 +7,6 @@ import EditIcon from '@mui/icons-material/Edit'; // Import EditIcon
 import DeleteIcon from '@mui/icons-material/Delete'; // Import DeleteIcon
 import { Link } from 'react-router-dom'
 
-
-
 const Home = () => {
   const [myData,setMyData]= useState()
   const [loading,setLoading]= useState(true)

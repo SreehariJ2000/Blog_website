@@ -1,4 +1,4 @@
-import React from 'react'
+import React ,{useState,useEffect} from 'react'
 import { Box, Button, Typography } from '@mui/material'
 import MyDatePickerField from './forms/MyDatePickerField'
 import MyMultiLineField from './forms/MyMultiLineField'
@@ -13,6 +13,24 @@ import * as yup from "yup"
 
 
 function Create() {
+    const [projectmanager,setprojectmanager]= useState([])
+    const [loading,setLoading]= useState(true)
+    const GetData =()=>{
+      AxiosInstance.get(`projectmanager/`).then(
+        (res)=>{
+            setprojectmanager(res.data)
+          console.log(res.data)
+          setLoading(false)
+        }
+      )
+    }
+  
+    useEffect(()=>{
+      GetData();
+    },[])
+
+
+
     const navigate=useNavigate()
     const defaultValues={
         name:'',
@@ -43,7 +61,8 @@ function Create() {
             name: data.name,
             comments: data.comment,
             startdate: startDate,  
-            enddate: endDate,      
+            enddate: endDate, 
+            projectmanager:data.project_manager     
         }).then((res)=>{
               navigate(`/`)
         })
@@ -79,6 +98,17 @@ function Create() {
                             width={'30%'}
                             control={control}
                         />
+
+                   <MySelectField
+                    label="Project Manager"
+                    name="project_manager"
+                    control={control}
+                    options={projectmanager.map(manager => ({ value: manager.id, label: manager.name }))}
+                    width={'30%'}
+                />
+
+
+
                     </Box>
                 </Box>
 
@@ -91,9 +121,12 @@ function Create() {
                     />
 
                    
-
+                           
                     
                 </Box>
+
+               
+
                 <Button variant='contained'  type='submit' sx={{width:"30px",height:'20px'}}>
                      submit
                     </Button>
